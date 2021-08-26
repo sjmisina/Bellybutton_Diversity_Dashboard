@@ -29,12 +29,20 @@ function buildMetadata(sample) {
     var PANEL = d3.select("#sample-metadata");
 
     PANEL.html("");
-    PANEL.append("h6").text(result.id);
-    PANEL.append("h6").text(result.ethnicity);
-    PANEL.append("h6").text(result.gender);
-    PANEL.append("h6").text(result.age);
-    PANEL.append("h6").text(result.location);
-    PANEL.append("h6").text(result.bbtype);
-    PANEL.append("h6").text(result.wfreq);
+    var printID = ("ID:  " + String(result.id));
+    var printEth = ("ETHNICITY:  " + String(result.ethnicity));
+    var printGen = ("GENDER:  " + String(result.gender));
+    var printAge = ("AGE:  " + String(result.age));
+    var printLoc = ("LOCATION:  " + String(result.location));
+    var printBbt = ("BBTYPE:  " + String(result.bbtype));
+    var printWfreq = ("WFREQ:  " + String(result.wfreq));
+    console.log(printID)
+    PANEL.append("h6").text(printID);
+    PANEL.append("h6").text(printEth);
+    PANEL.append("h6").text(printGen);
+    PANEL.append("h6").text(printAge);
+    PANEL.append("h6").text(printLoc);
+    PANEL.append("h6").text(printBbt);
+    PANEL.append("h6").text(printWfreq);
   });
 }
