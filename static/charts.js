@@ -26,7 +26,7 @@ function init() {
 }
 
 // Initialize the dashboard
-var researchJSON = "samples.json";
+var researchJSON = "static/samples.json";
 var washing = 0
 init();
 
