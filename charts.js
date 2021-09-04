@@ -122,8 +122,6 @@ function buildCharts(sample) {
     // 9. Create the layout for the bar chart. 
     var barLayout = {
       title: (tableTitle),
-      xaxis: {title: "Sample Value"},
-      yaxis: {title: "Bacterial ID"},
     };
     // 10. Use Plotly to plot the data with the layout. 
     Plotly.newPlot("bar", data, barLayout);
