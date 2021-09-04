@@ -1,3 +1,8 @@
+// for deliverable 4, I have (1) added a background picture to the jumbotron
+// I have (2) formatted the jumbotron text color, weight, and background for easier reading
+// I have (3) formatted the hovertext for the bar and bubble charts to make info easier to read
+// I have (4) modified the background color scale of the bubble chart to better align with the blue theme of page
+
 function init() {
   // Grab a reference to the dropdown select element
   var selector = d3.select("#selDataset");
@@ -14,8 +19,9 @@ function init() {
 
     // Use the first sample from the list to build the initial plots
     var firstSample = sampleNames[0];
-    buildCharts(firstSample);
     buildMetadata(firstSample);
+    buildCharts(firstSample);
+
   });
 }
 
@@ -52,9 +58,8 @@ function buildMetadata(sample) {
     Object.entries(result).forEach(([key, value]) => {
       PANEL.append("h6").text(`${key.toUpperCase()}: ${value}`);
     });
-
   });
-return washing;
+// return washing;
 }
 
 // 1. Create the buildCharts function.
@@ -77,15 +82,21 @@ function buildCharts(sample) {
     console.log(result);
     console.log(result.sample_values.length);
 
-    if (result.sample_values.length <9) {
+    if (result.sample_values.length <=10) {
       tableTitle = ("<b>" + (result.sample_values.length) + " Total Bacteria Culture Result(s) Found</b>"); 
     };
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
     var otu_ids = result.otu_ids;
     console.log("IDs: " + otu_ids);
+
+    // format data labels
     var otu_labels = result.otu_labels;
+    for(var i = 0; i < otu_labels.length; i++) {
+      otu_labels[i] = otu_labels[i].replaceAll(';', '<br>');
+      }
     console.log("Labels: " + otu_labels);
+
     var sample_values = result.sample_values;
     console.log("Values: " + sample_values);
 
@@ -120,20 +131,26 @@ function buildCharts(sample) {
     // 1. Create the trace for the bubble chart.
     console.log("Bubble IDs: " + otu_ids);
     console.log("Bubble Vals: " + sample_values);
-    
+  
     var bubbleData = {
       type: "scatter",
-      mode: "markers",
+      mode: "markers+text",
+      hovertext: otu_labels,
       x: otu_ids,
       y: sample_values,
       marker: {
-        color: "blue",
-        opacity: .40,
+        color: otu_ids,
+        cmin: 0,
+        cmax: 4000,
+        colorscale: "YlGnBu",
+        opacity: 0.5,
         size: (sample_values),
         line: {
           color: "black",
-          width: 4
-        }
+          width: 2,
+          opacity: 1
+        },
+        hovermode: 'closest',
       }
     }
     var data = [bubbleData];

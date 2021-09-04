@@ -1,0 +1,13 @@
+.jumbotron {
+    background: url('jumbotron_background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 300px;
+    color: white
+  }
+
+h1 {
+    text-align: center; 
+}
+h1 span { 
+    background-color: rgba(52, 52, 52, 0.721); 
+}
