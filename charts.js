@@ -5,7 +5,6 @@ function init() {
   // Use the list of sample names to populate the select options
   d3.json(researchJSON).then((data) => {
     var sampleNames = data.names;
-
     sampleNames.forEach((sample) => {
       selector
         .append("option")
@@ -63,7 +62,7 @@ function buildCharts(sample) {
   console.log("sample = " + sample)
   const sampleFromInput = sample
   console.log("sampleFromInput: " + sampleFromInput)
-  var tableTitle = "Top 10 Bacteria Culture Results"
+  var tableTitle = "<b>Top 10 Bacteria Culture Results</b>"
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json(researchJSON).then((data) => {
     // 3. Create a variable that holds the samples array. 
@@ -79,7 +78,7 @@ function buildCharts(sample) {
     console.log(result.sample_values.length);
 
     if (result.sample_values.length <9) {
-      tableTitle = ((result.sample_values.length) + " Total Bacteria Culture Result(s) Found"); 
+      tableTitle = ("<b>" + (result.sample_values.length) + " Total Bacteria Culture Result(s) Found</b>"); 
     };
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
@@ -131,13 +130,17 @@ function buildCharts(sample) {
         color: "blue",
         opacity: .40,
         size: (sample_values),
+        line: {
+          color: "black",
+          width: 4
+        }
       }
     }
     var data = [bubbleData];
 
     // 2. Create the layout for the bubble chart.
     var bubbleLayout = {
-      title: "Bacteria Cultures Per Sample",
+      title: "<b>Bacteria Cultures Per Sample</b>",
       xaxis: {title: "OTU ID"},
       showlegend: false,
     };
@@ -149,10 +152,9 @@ function buildCharts(sample) {
     var gaugeData = [
       {
         type: "indicator",
-        mode: "gauge+number+delta",
+        mode: "gauge+number",
         value: washing,
-        title: { text: "Belly Button Washing Frequency", font: { size: 24 } },
-        //delta: { reference: 400, increasing: { color: "RebeccaPurple" } },
+        title: {text: "<b>Belly Button Washing Frequency</b> <br>Scrubs per Week", font: {size: 24}},
         gauge: {
           axis: {range: [null, 10], tickwidth: 2, tickcolor: "black"},
           bar: {color: "black"},
@@ -176,8 +178,8 @@ function buildCharts(sample) {
     ];    
     // 5. Create the layout for the gauge chart.
     var gaugeLayout = { 
-      // width: 500,
-      // height: 400,
+      width: 500,
+      height: 400,
       margin: { t: 25, r: 25, l: 25, b: 25 },
       font: { color: "black", family: "Arial" }
     };
