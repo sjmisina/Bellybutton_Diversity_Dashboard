@@ -67,7 +67,7 @@ function buildCharts(sample) {
   console.log("sample = " + sample)
   const sampleFromInput = sample
   console.log("sampleFromInput: " + sampleFromInput)
-  var tableTitle = "<b>Top 10 Bacteria Culture Results</b>"
+  var tableTitle = "<b>Top 10 Bacteria Cultures Found</b>"
   // 2. Use d3.json to load and retrieve the samples.json file 
   d3.json(researchJSON).then((data) => {
     // 3. Create a variable that holds the samples array. 
@@ -83,7 +83,7 @@ function buildCharts(sample) {
     console.log(result.sample_values.length);
 
     if (result.sample_values.length <=10) {
-      tableTitle = ("<b>" + (result.sample_values.length) + " Total Bacteria Culture Result(s) Found</b>"); 
+      tableTitle = ("<b>" + (result.sample_values.length) + " Total Bacteria Cultures Found</b>"); 
     };
 
     // 6. Create variables that hold the otu_ids, otu_labels, and sample_values.
